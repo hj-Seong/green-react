@@ -25,6 +25,16 @@
             );
         }
 
+        class HelloComp extends React.Component {
+            render() {
+                return <h1>환영합니다</h1>
+            }
+        }
+
+        function HelloFuncComp() {
+            const name = "홍길동";
+            return <p>{name}님 반갑습니다</p>
+        }
 
 
         const container = document.querySelector("#root");
