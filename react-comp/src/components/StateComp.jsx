@@ -11,6 +11,7 @@ class StateComp extends Component {
     constructor(props) {
         // constructor 를 통해서 클래스의 속성관리
         super(props);
+        // state는 객체의 형식으로
         this.state = {
             number : 4,
             count : 0,
@@ -21,10 +22,15 @@ class StateComp extends Component {
         const { number, count } = this.state;
         return (
             <div>
-                <h1>{number}</h1>
+                <h1>{number} </h1>
                 <button onClick={
                     ()=>{ this.setState({number : number+1})}
                 }> +1 </button>
+
+                <h1>{count} </h1>
+                <button onClick={
+                    ()=>{ this.setState({count : count+1})}
+                }> count +1 </button>
             </div>
         )
     }

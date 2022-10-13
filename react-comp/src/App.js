@@ -5,6 +5,7 @@ import HelloFuncComp from './components/HelloFuncComp';
 import MyLogin from './components/MyLogin';
 import ArrowLogin from './components/ArrowLogin';
 import StateComp from './components/StateComp';
+import StateFuncComp from './components/StateFuncComp';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <ArrowLogin login={true}  />
         <StateComp />
         <StateComp />
+        <StateFuncComp />
       </header>
     </div>
   );
