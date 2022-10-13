@@ -7,13 +7,25 @@ class EventComp extends Component {
         this.state = {
             isToggleOn:true
         }
+        this.handleClick = this.handleClick.bind(this);
     }
+
+    // 메소드로만 사용하면 this의 위치를 찾지못해서 오류발생 : this를 bind로 연결
+    handleClick() {
+        // 실행하는 공간이 바뀌어서 값을 가져오는 곳이 바뀜
+        // render() : render안에서 가져온 this.state
+        // 메소드 : constructor에서 가져온 this.state
+        this.setState({isToggleOn :!this.state.isToggleOn})
+    }
+
     render() {
         const {isToggleOn} = this.state;
         return (
-            <button onClick={
-                ()=> this.setState({isToggleOn :!isToggleOn})
-            }> { isToggleOn ? 'ON' : 'OFF' } </button>
+            <div>
+                <button onClick={ this.handleClick }> { isToggleOn ? 'ON' : 'OFF' } </button>
+                {/** num = 1이라는 숫자값을 추가해서, 버튼을 클릭할때마다 2배로 늘어날수있게 */}
+                {/* 값은 버튼에 출력 */}
+            </div>
         )
     }
 }
