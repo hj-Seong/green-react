@@ -27,6 +27,14 @@ class StateComp extends Component {
                     ()=>{ this.setState({number : number+1})}
                 }> +1 </button>
 
+                <button onClick={ // 버튼을 누르면 number값 0
+                    ()=>this.setState({number : 0})
+                }> 0 </button>
+
+                <button onClick={ // 버튼을 누르면 number값 -1감소
+                    ()=>{ this.setState({number : number-1})}
+                }> -1 </button>
+
                 <h1>{count} </h1>
                 <button onClick={
                     ()=>{ this.setState({count : count+1})}
