@@ -3,7 +3,6 @@
 // login 이  true 일때 
 // 로그인에 성공하였습니다. name 입니다 를 출력하고
 // 아닐때, 로그인이 필요합니다를 출력하는 컴포넌트 작성
-
 import { Component } from "react";
 
 class MyLogin extends Component{
