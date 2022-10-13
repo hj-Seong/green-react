@@ -7,6 +7,7 @@ import ArrowLogin from './components/ArrowLogin';
 import StateComp from './components/StateComp';
 import StateFuncComp from './components/StateFuncComp';
 import EventComp from './components/EventComp';
+import EventFuncComp from './components/EventFuncComp';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <StateComp />
         <StateFuncComp />
         <EventComp />
+        <EventFuncComp />
       </header>
     </div>
   );
