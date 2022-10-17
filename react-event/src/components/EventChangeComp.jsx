@@ -19,7 +19,7 @@ class EventChangeComp extends Component {
     }
     render() {
         return(
-            <div>
+        <div>
             {/** h1태그에 input으로 작성한 내용 출력하기 */}
             <h1>글을 입력하세요</h1>
             <input type="text" name="message" onChange={ this.onchange } />
