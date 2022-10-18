@@ -46,7 +46,14 @@ class MapComp extends Component {
       <li key={index}>{season}</li>
     ));
     const bookItem = book.map((book, index) => (
-      <li key={book.number}> {book.title}</li>
+      // book.title을 클릭하면 삭제할수 있도록 내용 추가
+      <li key={book.number} onClick={ ()=>{
+        const newBook = this.state.book.filter((b)=>(b.number!=book.number));
+        this.setState({book : newBook})
+      }}> 
+        {book.title}
+      </li>
+
     ));
     return (
       <div>
