@@ -8,6 +8,14 @@ class MapCompTest extends Component {
       names: ["홍길동", "성춘향", "Jhon"],
       inputName : ""
     };
+
+    this.deleteName = (index) => {
+      // 이름 값을 가져와서
+      // state.names의 filter를 통해서 이름을 제외하고 배열 만듦
+      const newNames = this.state.names.filter((n,i) => i != index);
+      this.setState({names:newNames})
+    }
+
   }
   render() {
     const { names, inputName } = this.state;
@@ -32,7 +40,9 @@ class MapCompTest extends Component {
             {names.map((name, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{name}</td>
+                <td onClick={ () => { this.deleteName(index) }}>
+                  {name}
+                </td>
               </tr>
             ))}
           </tbody>
