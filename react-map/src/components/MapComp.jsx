@@ -16,7 +16,27 @@ class MapComp extends Component {
           number: "abcd1111",
         },
       ],
+      inputContent : {
+        title : "",
+        author : "",
+        number : ""
+      }
     };
+    this.onchange = (e) => {
+      // this.state.inputContent의 값이 객체이므로 안의 속성을 유지하기위해 ... 연산자사용
+      const newContent = {
+        ...this.state.inputContent,
+        [e.target.name] : e.target.value
+      }
+      this.setState({inputContent : newContent})
+    }
+    this.getBook = (e) => {
+      console.log("확인")
+      e.preventDefault();
+      // 작성된 inputContent를 state.book 배열에 추가
+      const newBook = this.state.book.concat(this.state.inputContent)
+      this.setState({book : newBook})
+    }
   }
   render() {
     const { season, book } = this.state;
@@ -38,6 +58,18 @@ class MapComp extends Component {
             </li>
           ))}
         </ul>
+        {/** 책 이름을 추가하는 input을 작성하고 submit버튼을 누르면  */}
+        {/** this.state.book에 추가될수 있도록 작성 */}
+        {/** 각각의 값들이 저장될 변수공간을 만들어서 사용, 태그속성추가가능 */}
+        <form onSubmit={this.getBook}>
+          <label htmlFor="">책이름</label>
+          <input type="text" name="title" onChange={this.onchange}/>
+          <label htmlFor="">저자</label>
+          <input type="text" name="author" onChange={this.onchange} />
+          <label htmlFor="">책넘버</label>
+          <input type="text" name="number" onChange={this.onchange}/>
+          <input type="submit" value="제출" />
+        </form>
         <ol>{bookItem}</ol>
       </div>
     );
