@@ -1,7 +1,9 @@
 .on {
     color: black;
+    transition: color 2s;
 }
 
 .off {
     color : lightgrey;
+    transition: color 2s;
 }
