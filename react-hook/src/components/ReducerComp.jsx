@@ -32,7 +32,9 @@ const ReducerComp = () => {
              * MemoComp에서 작성한 글이 ReducerComp에서 수정되어 나올수있게 하세요
             */}
             <h1>{state.input}</h1>
-            <MemoComp />
+            {/** 먼저 ReducerComp에서 실행해보기, e객체의 값을 어떻게 가져갈지 생각하기 */}
+            <input type="text" onChange={ (e)=>{ dispatch( {} ) } }/>
+            {/*<MemoComp />*/}
 
         </div>
     );
