@@ -3,6 +3,7 @@ import StateEffectHookComp from './components/StateEffectHookComp';
 import ReducerComp from './components/ReducerComp';
 import UseMemoComp from './components/UseMemoComp';
 import CallbackComp from './components/CallbackComp';
+import RefComp from './components/RefComp';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <ReducerComp />
       <UseMemoComp />
       <CallbackComp />
+      <RefComp />
     </div>
   );
 }
