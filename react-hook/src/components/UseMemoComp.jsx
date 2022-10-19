@@ -20,6 +20,10 @@ const UseMemoComp = () => {
     // useMemo를 통해서, 작성한 함수가 특정 값에만 실행되어 return된다.
     // 그 값이 아닐 경우 함수는 실행되지않는다.(이미 있는 return값을 그대로 사용)
     const memoCount = useMemo( ()=>doubleCount() , [count])
+    const memoNum = useMemo(()=>{
+        console.log("memoNum");
+        return num*3
+    }, [num])
 
     return ( 
         <div>
