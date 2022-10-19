@@ -3,6 +3,7 @@
 import { useReducer } from "react";
 
 import ReducerCountComp from "./RuducerCountComp";
+import MemoComp from "./MemoComp";
 
 function reducer(state, action) {
     switch(action.type) {
@@ -12,11 +13,13 @@ function reducer(state, action) {
             return {count : state.count-1};
         case 'zero' : 
             return {count : 0};
+        case 'changeInput':
+            return { input : action.payload }
     }
 }
 
 const ReducerComp = () => {
-    const [state, dispatch] = useReducer(reducer, {count : 0})
+    const [state, dispatch] = useReducer(reducer, {count : 0, input:""})
     return ( 
         <div>
             <h1>{state.count}</h1>
@@ -33,8 +36,11 @@ const ReducerComp = () => {
             */}
             <h1>{state.input}</h1>
             {/** 먼저 ReducerComp에서 실행해보기, e객체의 값을 어떻게 가져갈지 생각하기 */}
-            <input type="text" onChange={ (e)=>{ dispatch( {} ) } }/>
-            {/*<MemoComp />*/}
+            <input type="text" onChange={ (e)=>{ 
+                // setState(e.target.value) >> dispatch에서 쓸수있도록
+                dispatch( {type:'changeInput', payload : e.target.value} )
+            } }/>
+            <MemoComp dispatch={dispatch}/>
 
         </div>
     );
