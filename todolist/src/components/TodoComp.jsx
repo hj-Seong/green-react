@@ -49,7 +49,11 @@ function reducer(state, action) {
             } )
             // 
             const newTodoList2 = state.todolist.map((todoitem)=>(todoitem.id == action.id ?  {...todoitem, done : !todoitem.done} : todoitem ))
-            return {...state, todolist : newTodoList}
+            return {...state, todolist : newTodoList};
+        case "deletelist":
+            // id 값을 가져와서, id값과 같은 객체를 제외하고 배열생성
+            const newTodolist = state.todolist.filter((todoitem)=>( todoitem.id != action.id));
+            return {...state, todolist : newTodolist}
         case "todoInput":
             return { ...state , todoInput : action.payload};
         default : // 다른 값이 들어왔을때 현재 state를 유지하고 오류를 알려준다.

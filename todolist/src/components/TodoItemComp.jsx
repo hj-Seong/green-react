@@ -7,7 +7,7 @@ const TodoItemComp = (props) => {
                 checked={ todoitem.done } 
                 onClick={ ()=>{ dispatch({type:"checkedlist", id : todoitem.id}) } } readOnly/>
                 {todoitem.todo}
-            <button>X</button>
+            <button onClick={ ()=>{dispatch({type:"deletelist", id :todoitem.id})}}>X</button>
         </li>
     );
 }
