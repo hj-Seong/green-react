@@ -22,7 +22,8 @@ const initstate = {
         }
     ], // todoitem을 넣을 공간
     // todo값을 입력받을 todoInput
-    todoInput : ""
+    todoInput : "",
+    countAll : 2
 }
 
 function reducer(state, action) {
@@ -56,11 +57,19 @@ function reducer(state, action) {
             return {...state, todolist : newTodolist}
         case "todoInput":
             return { ...state , todoInput : action.payload};
+
+        case "todoAdd":
+            // todo객체를 만들어서, todolist에 연결하여 새로운 배열을 만듦
+            const newTodoList3 = state.todolist.concat({
+                done : false,
+                todo : state.todoInput,
+                id : state.countAll+1
+            })
+            return {...state, todolist : newTodoList3, countAll : state.countAll+1 }
         default : // 다른 값이 들어왔을때 현재 state를 유지하고 오류를 알려준다.
             console.error("존재 하지 않는 액션타입입니다")
             return state;
     }
-
 }
 const TodoComp = () => {
     const [state, dispatch] = useReducer(reducer, initstate)
@@ -69,7 +78,7 @@ const TodoComp = () => {
             <input type="text" onChange={
                 (e)=>{ dispatch({type: "todoInput", payload : e.target.value})}
                 }/>
-            <button>+</button>
+            <button onClick={()=>{dispatch({type: "todoAdd"})}}>+</button>
 
             <ul>
                 <li>
@@ -81,7 +90,7 @@ const TodoComp = () => {
                     <button>X</button>
                 </li>
                 {/** TodoItemComp를 만들어 map을 통해서 내용 출력 */}
-                { state.todolist.map((todoitem)=>(<TodoItemComp todoitem={todoitem} dispatch={dispatch} />))}
+                { state.todolist.map((todoitem)=>(<TodoItemComp key={todoitem.id} todoitem={todoitem} dispatch={dispatch} />))}
             </ul>
         </div>
     );
