@@ -6,7 +6,7 @@
 import React, { Component } from "react";
 import { useContext } from "react";
 
-// useContext통해서 공유할 값을 객체형태로 작성
+// (1) useContext통해서 공유할 값을 객체형태로 작성
 const themes = {
     light : {
         foreground : "#000000",
@@ -15,17 +15,21 @@ const themes = {
     dark : {
         foreground : "#ffffff",
         background : "#222222"
+    },
+    blue : {
+        background : "#2244ff",
+        foreground : "#ffffff"
     }
 }
-// useContext를 통해서 값을 공유하기위해 createContext사용
+// (2) useContext를 통해서 값을 공유하기위해 createContext사용
 // React를 import해서 사용 
 const ThemeContext = React.createContext(null);
 
 const ContextCompAll = () => {
     return ( 
         <div>
-            {/** createContext로 만든 컴포넌트로 값을 사용하는 컴포넌트를 감싼다 */}
-            <ThemeContext.Provider value={themes.light}>
+            {/** (3) createContext로 만든 컴포넌트로 값을 사용하는 컴포넌트를 감싼다 */}
+            <ThemeContext.Provider value={themes.blue}>
                 <Toolbar />
             </ThemeContext.Provider>
         </div>
@@ -44,6 +48,7 @@ const Toolbar = () => {
         <div>
             <ThemedButtonFunc />
             <ThemedButtonClass />
+            <ThemedTextFunc />
         </div>
     );
 }
@@ -52,11 +57,13 @@ const Toolbar = () => {
 // 함수형 컴포넌트
 const ThemedButtonFunc = () => {
     // useContext를 통해서 조상의 값에 접근할수 있다
-    // createContext로 만든 컴포넌트를 가져와서 값을 사용
+    // (4) createContext로 만든 컴포넌트를 가져와서 값을 사용
     const theme = useContext(ThemeContext);
     return ( 
         <div>
-            <button style={ {backgroundColor: theme.background, color:theme.foreground } } > 직접 넣어준 컬러값입니다 </button>
+            <button style={ {backgroundColor: theme.background, color:theme.foreground } } > 
+                useContext를 통해서 가져온 값입니다
+            </button>
         </div>
     );
 }
@@ -80,6 +87,14 @@ class ThemedButtonClass extends Component {
     }
 }
 
-// Toolbar안에 들어갈 새로운 p태그 작성
+// Toolbar안에 들어갈 새로운 p태그 - 컴포넌트 작성
 // 함수형으로 만들어주셔서 동일한 theme.dark를 가질 수 있도록하기.
 // + themes에 blue를 추가해서 배경색 blue이고 color가 white 주제를 만들어서 확인
+const ThemedTextFunc = () => {
+    const theme = useContext(ThemeContext);
+    return ( 
+        <div>
+            <p style={{backgroundColor:theme.background, color: theme.foreground}}> 다크모드로 진행하고있습니다</p>
+        </div>
+    );
+}
