@@ -58,6 +58,11 @@ function reducer(state, action) {
         case "todoInput":
             return { ...state , todoInput : action.payload};
         case "todoAdd":
+            if( !state.todoInput ){
+                console.log("확인");
+                alert("입력해주세요");
+                return state;
+            }
             // todo객체를 만들어서, todolist에 연결하여 새로운 배열을 만듦
             const newTodoList3 = state.todolist.concat({
                 done : false,

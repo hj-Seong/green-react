@@ -2,7 +2,7 @@ import './css/todoItem.css'
 const TodoItemComp = (props) => {
     const {todoitem, dispatch} = props
     return ( 
-        <li className={todoitem.done && 'done'}>
+        <li className={todoitem.done ? 'done' : undefined}>
             {/** TodoItem - 체크여부, 할일, id값(삭제에 필요) */}
             <input type="checkbox" 
                 checked={ todoitem.done } 
