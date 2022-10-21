@@ -54,10 +54,9 @@ function reducer(state, action) {
         case "deletelist":
             // id 값을 가져와서, id값과 같은 객체를 제외하고 배열생성
             const newTodolist = state.todolist.filter((todoitem)=>( todoitem.id != action.id));
-            return {...state, todolist : newTodolist}
+            return {...state, todolist : newTodolist};
         case "todoInput":
             return { ...state , todoInput : action.payload};
-
         case "todoAdd":
             // todo객체를 만들어서, todolist에 연결하여 새로운 배열을 만듦
             const newTodoList3 = state.todolist.concat({
@@ -65,7 +64,7 @@ function reducer(state, action) {
                 todo : state.todoInput,
                 id : state.countAll+1
             })
-            return {...state, todolist : newTodoList3, countAll : state.countAll+1 }
+            return {...state, todolist : newTodoList3, countAll : state.countAll+1, todoInput:"" };
         default : // 다른 값이 들어왔을때 현재 state를 유지하고 오류를 알려준다.
             console.error("존재 하지 않는 액션타입입니다")
             return state;
@@ -75,7 +74,7 @@ const TodoComp = () => {
     const [state, dispatch] = useReducer(reducer, initstate)
     return (  
         <div>
-            <input type="text" onChange={
+            <input type="text" value={state.todoInput} onChange={
                 (e)=>{ dispatch({type: "todoInput", payload : e.target.value})}
                 }/>
             <button onClick={()=>{dispatch({type: "todoAdd"})}}>+</button>
